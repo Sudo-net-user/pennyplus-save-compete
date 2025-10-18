@@ -106,11 +106,11 @@ export const ProfileSetup = ({ onComplete }: ProfileSetupProps) => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="income">Monthly Income ($)</Label>
+            <Label htmlFor="income">Monthly Income (₹)</Label>
             <Input
               id="income"
               type="number"
-              placeholder="5000"
+              placeholder="50000"
               value={monthlyIncome}
               onChange={(e) => setMonthlyIncome(e.target.value)}
               min="0"

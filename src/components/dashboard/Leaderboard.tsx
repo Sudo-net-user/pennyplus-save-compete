@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, TrendingUp, Crown } from "lucide-react";
+import { formatIndianCurrency } from "@/lib/utils";
 
 interface LeaderboardProps {
   currentUser: string;
@@ -89,7 +90,7 @@ export const Leaderboard = ({ currentUser, monthlySavings }: LeaderboardProps) =
 
                 <div className="text-right">
                   <p className="text-2xl font-bold text-success">
-                    ${entry.savings.toLocaleString()}
+                    {formatIndianCurrency(entry.savings)}
                   </p>
                   <p className="text-xs text-muted-foreground">this month</p>
                 </div>

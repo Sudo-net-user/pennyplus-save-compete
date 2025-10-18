@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { ShoppingBag } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Transaction } from "@/pages/Index";
+import { formatIndianCurrency } from "@/lib/utils";
 
 interface QuickPurchaseProps {
   currentSavings: number;
@@ -37,7 +38,7 @@ export const QuickPurchase = ({
     if (amount > currentSavings) {
       toast({
         title: "Insufficient funds",
-        description: `You only have $${currentSavings.toFixed(2)} in savings`,
+        description: `You only have ${formatIndianCurrency(currentSavings)} in savings`,
         variant: "destructive",
       });
       return;
@@ -49,7 +50,7 @@ export const QuickPurchase = ({
     
     toast({
       title: "Purchase logged!",
-      description: `$${amount.toFixed(2)} deducted from savings`,
+      description: `${formatIndianCurrency(amount)} deducted from savings`,
     });
 
     setPurchaseAmount("");
@@ -68,7 +69,7 @@ export const QuickPurchase = ({
         <div className="p-4 bg-muted rounded-lg">
           <p className="text-sm text-muted-foreground">Available Savings</p>
           <p className="text-2xl font-bold text-success">
-            ${currentSavings.toLocaleString()}
+            {formatIndianCurrency(currentSavings)}
           </p>
         </div>
 
@@ -83,7 +84,7 @@ export const QuickPurchase = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="purchase-amount">Amount ($)</Label>
+          <Label htmlFor="purchase-amount">Amount (₹)</Label>
           <Input
             id="purchase-amount"
             type="number"

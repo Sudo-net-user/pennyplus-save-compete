@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { Target, Plus, Trash2, ExternalLink, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { WishlistItem, Transaction } from "@/pages/Index";
+import { formatIndianCurrency } from "@/lib/utils";
 
 interface WishlistManagerProps {
   wishlist: WishlistItem[];
@@ -86,7 +87,7 @@ export const WishlistManager = ({
     if (currentSavings < item.price) {
       toast({
         title: "Insufficient savings",
-        description: `You need $${(item.price - currentSavings).toFixed(2)} more`,
+        description: `You need ${formatIndianCurrency(item.price - currentSavings)} more`,
         variant: "destructive",
       });
       return;
@@ -132,7 +133,7 @@ export const WishlistManager = ({
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="item-price">Price ($)</Label>
+              <Label htmlFor="item-price">Price (₹)</Label>
               <Input
                 id="item-price"
                 type="number"
@@ -167,7 +168,7 @@ export const WishlistManager = ({
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg">{item.name}</h3>
                     <p className="text-2xl font-bold text-primary">
-                      ${item.price.toLocaleString()}
+                      {formatIndianCurrency(item.price)}
                     </p>
                   </div>
                   <Button

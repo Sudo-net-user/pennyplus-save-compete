@@ -9,7 +9,9 @@ import { TransactionHistory } from "./dashboard/TransactionHistory";
 import { Leaderboard } from "./dashboard/Leaderboard";
 import { DonationSettings } from "./dashboard/DonationSettings";
 import { ProfileEditor } from "./dashboard/ProfileEditor";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { UserProfile, WishlistItem, Transaction } from "@/pages/Index";
+import { formatIndianCurrency } from "@/lib/utils";
 
 interface DashboardProps {
   profile: UserProfile;
@@ -53,8 +55,11 @@ export const Dashboard = ({
             </h1>
             <p className="text-muted-foreground mt-1">Your financial overview</p>
           </div>
-          <div className="flex items-center gap-2 bg-gradient-primary p-3 rounded-2xl shadow-glow">
-            <Wallet className="w-6 h-6 text-primary-foreground" />
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <div className="bg-gradient-primary p-3 rounded-2xl shadow-glow">
+              <Wallet className="w-6 h-6 text-primary-foreground" />
+            </div>
           </div>
         </div>
 
@@ -62,25 +67,25 @@ export const Dashboard = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <OverviewCard
             title="Monthly Income"
-            value={`$${profile.monthlyIncome.toLocaleString()}`}
+            value={formatIndianCurrency(profile.monthlyIncome)}
             icon={TrendingUp}
             gradient="bg-gradient-primary"
           />
           <OverviewCard
             title="Total Spending"
-            value={`$${totalSpending.toLocaleString()}`}
+            value={formatIndianCurrency(totalSpending)}
             icon={Wallet}
             gradient="bg-gradient-secondary"
           />
           <OverviewCard
             title="Monthly Savings"
-            value={`$${monthlySavings.toLocaleString()}`}
+            value={formatIndianCurrency(monthlySavings)}
             icon={Target}
             gradient="bg-gradient-success"
           />
           <OverviewCard
             title="Current Savings"
-            value={`$${currentSavings.toLocaleString()}`}
+            value={formatIndianCurrency(currentSavings)}
             icon={Award}
             gradient="bg-gradient-gold"
             pulse

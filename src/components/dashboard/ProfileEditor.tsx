@@ -82,7 +82,7 @@ export const ProfileEditor = ({ profile, setProfile, addTransaction }: ProfileEd
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="edit-income">Monthly Income ($)</Label>
+          <Label htmlFor="edit-income">Monthly Income (₹)</Label>
           <Input
             id="edit-income"
             type="number"

@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { ProfileSetup } from "@/components/ProfileSetup";
 import { Dashboard } from "@/components/Dashboard";
-import { Wallet, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import pennyPlusLogo from "@/assets/penny-plus-logo.png";
 
 export interface SpendingCategory {
   name: string;
@@ -76,15 +78,17 @@ const Index = () => {
   if (!profile) {
     return (
       <div className="min-h-screen bg-gradient-background flex items-center justify-center p-4">
+        <div className="absolute top-4 right-4">
+          <ThemeToggle />
+        </div>
         <div className="w-full max-w-4xl animate-fade-in">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="bg-gradient-primary p-3 rounded-2xl shadow-glow">
-                <Wallet className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <h1 className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                Penny+
-              </h1>
+              <img 
+                src={pennyPlusLogo} 
+                alt="Penny+ Logo" 
+                className="w-24 h-24 object-contain"
+              />
             </div>
             <p className="text-xl text-muted-foreground flex items-center justify-center gap-2">
               <TrendingUp className="w-5 h-5" />

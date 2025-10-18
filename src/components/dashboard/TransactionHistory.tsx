@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { History, TrendingUp, TrendingDown, ShoppingBag, Target, Heart } from "lucide-react";
 import { Transaction } from "@/pages/Index";
 import { format } from "date-fns";
+import { formatIndianCurrency } from "@/lib/utils";
 
 interface TransactionHistoryProps {
   transactions: Transaction[];
@@ -79,8 +80,8 @@ export const TransactionHistory = ({ transactions }: TransactionHistoryProps) =>
                       : "text-destructive"
                   }`}
                 >
-                  {transaction.type === "income" ? "+" : "-"}$
-                  {transaction.amount.toLocaleString()}
+                  {transaction.type === "income" ? "+" : "-"}
+                  {formatIndianCurrency(transaction.amount).replace("₹", "")}
                 </p>
               </div>
             ))}

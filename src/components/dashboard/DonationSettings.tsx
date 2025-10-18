@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Heart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Transaction } from "@/pages/Index";
+import { formatIndianCurrency } from "@/lib/utils";
 
 interface DonationSettingsProps {
   donationPercentage: number;
@@ -62,7 +63,7 @@ export const DonationSettings = ({
     if (currentSavings < donationAmount) {
       toast({
         title: "Insufficient savings",
-        description: `You need $${(donationAmount - currentSavings).toFixed(2)} more to donate`,
+        description: `You need ${formatIndianCurrency(donationAmount - currentSavings)} more to donate`,
         variant: "destructive",
       });
       return;
@@ -77,7 +78,7 @@ export const DonationSettings = ({
 
     toast({
       title: "Thank you for your generosity! ❤️",
-      description: `$${donationAmount.toFixed(2)} donated to help children in need`,
+      description: `${formatIndianCurrency(donationAmount)} donated to help children in need`,
     });
   };
 
@@ -98,7 +99,7 @@ export const DonationSettings = ({
             <div>
               <p className="text-sm text-muted-foreground">Monthly Donation</p>
               <p className="text-2xl font-bold text-destructive">
-                ${donationAmount.toLocaleString()}
+                {formatIndianCurrency(donationAmount)}
               </p>
             </div>
             <Heart className="w-8 h-8 text-destructive" />
@@ -123,8 +124,7 @@ export const DonationSettings = ({
             </Button>
           </div>
           <p className="text-sm text-muted-foreground">
-            {donationPercentage}% of ${monthlyIncome.toLocaleString()} = $
-            {donationAmount.toLocaleString()}
+            {donationPercentage}% of {formatIndianCurrency(monthlyIncome)} = {formatIndianCurrency(donationAmount)}
           </p>
         </div>
 
